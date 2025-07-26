@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.post("/register", async (req, res) => {
   try {
     // Validate kya uske andar firstName
-    validUser(req.body);
+    await validUser(req.body);
 
     //  converting password into hashing
     req.body.password = await bcrypt.hash(req.body.password, 10);
@@ -87,12 +87,16 @@ app.delete("/user/:id", async (req, res) => {
 app.patch("/user", async (req, res) => {
   try {
     const { _id, ...update } = req.body;
-    validUser(req.body);
+    if(_id){
+    await validUser(req.body);
     await User.findByIdAndUpdate(_id, update, {
       runValidators: true,
       new: true,
     }).then(console.log);
     res.send("Update Succesfully");
+    }else{
+      throw new Error('_id Need') 
+    }
   } catch (err) {
     res.send("Error " + err.message);
   }
