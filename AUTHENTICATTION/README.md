@@ -4,7 +4,7 @@ This project is a modular and secure user authentication system built using **No
 
 ## 📁 Folder Structure
 
-![FILE_STRUCTURE](./fileStructure/imge.png)
+![FILE_STRUCTURE](./fileStructure/image.png)
 
 ```
 AUTHENTICATION/
@@ -28,6 +28,8 @@ AUTHENTICATION/
  ├── .env                           # Environment variables 
  ├── index.js                       # App entry point 
  ├── package.json                   # Dependencies & scripts
+ ├── README.md
+
 ```
 
 ## 🚀 Features
