@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogs</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fffafa;
+        margin: 0;
+        padding: 20px;
+      }
+
+      div > div a {
+        display: inline-block;
+        margin-right: 15px;
+        text-decoration: none;
+        color: #c0392b;
+        font-weight: bold;
+        font-size: 16px;
+        border-bottom: 2px solid transparent;
+        transition: border-color 0.2s ease-in-out;
+      }
+
+      div > div a:hover {
+        border-color: #c0392b;
+      }
+
+      .blog-card {
+        border: 1px solid #e74c3c;
+        background-color: #fff5f5;
+        border-radius: 8px;
+        padding: 15px 20px;
+        margin: 20px 0;
+        box-shadow: 0 2px 6px rgba(231, 76, 60, 0.1);
+      }
+
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #e74c3c;
+      }
+
+      .img {
+        display: block;
+        margin: 10px 0;
+      }
+
+      .img img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border: 2px solid #e74c3c;
+        border-radius: 4px;
+        border-radius: 50%;
+      }
+
+      .body {
+        display: block;
+        color: #555;
+        margin-top: 8px;
+        line-height: 1.4;
+      }
+      .createdBy {
+        color: #3a3a3a;
+        font-size: 10px;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div><a href="/blog">Add Blog</a><a href="/user">Home</a></div>
+      <% for (let index = 0; index < blogs.length; index++) { const element =
+      blogs[index]; %>
+      <div style="border: 1px solid red" class="blog-card">
+        <span class="title"><%= element.title%></span><br />
+        <span class="img"
+          ><img
+            style="width: 100px; height: 100px"
+            src="<%= element.coverImageURL%>"
+            alt="cover-photo" /></span
+        ><br />
+        <span class="body"><%= element.body%></span><br />
+        <span class="body createdBy"><%= element.createdBy%></span>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>
