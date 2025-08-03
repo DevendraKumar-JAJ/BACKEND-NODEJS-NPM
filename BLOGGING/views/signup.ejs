@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <h3>SignUp Page</h3>
+    <form action="/user/signup" method="post" enctype="multipart/form-data">
+      <input type="text" name="firstName" placeholder="FirstName" /><br />
+      <input type="text" name="lastName" placeholder="LastName" /><br />
+      <input type="password" name="password" placeholder="ABCD@1234" /><br />
+      <input
+        type="email"
+        name="email"
+        id="emial"
+        placeholder="example@gmail.com"
+      />
+      <br />
+      <input type="file" name="profileImage" id="pfi" value="../public/" />
+      <br />
+      <label for="user">USER</label>
+
+      <input type="radio" checked name="role" id="user" value="USER" />
+      <label for="admin">ADMIN</label>
+      <input type="radio" name="role" id="admin" value="ADMIN" /> <br />
+      <button type="submit">Sign Up</button>
+    </form>
+    <%- include('./partials/script.ejs') %>
+  </body>
+</html>
