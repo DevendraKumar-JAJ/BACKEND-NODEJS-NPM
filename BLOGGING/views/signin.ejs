@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <h3>Sign In  Page</h3>
+    <form action="/user/signin" method="post" enctype="">
+      <input required
+        type="email"
+        name="email"
+        id="emial"
+        placeholder="example@gmail.com"
+      /> <br>
+      <input required type="password" name="password" placeholder="ABCD@1234" /><br />
+      <br />
+
+      <button type="submit">Sign In</button>
+    </form>
+    <%- include('./partials/script.ejs') %>
+  </body>
+</html>
