@@ -163,10 +163,3 @@ Views rendered using EJS templating engine
 >Blog editing/deleting
 >
 >Pagination
-
-## 🤝 Contributing
-Feel free to fork this repo and submit a PR with improvements or bug fixes.
-
-## 🧑‍💻 Author
-Devendra Kumar
-

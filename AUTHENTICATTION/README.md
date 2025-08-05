@@ -160,10 +160,3 @@ Add frontend or Postman collection for testing
 
 
 
----
-
-### 📃 License
-
-#### This project is licensed under the MIT License.
-
----
