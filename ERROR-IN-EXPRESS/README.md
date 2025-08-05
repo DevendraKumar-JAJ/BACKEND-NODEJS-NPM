@@ -1,100 +1,96 @@
-ErrorHandlinMiddleware
+# ErrorHandlinMiddleware
 A simple Express.js project demonstrating structured error handling using custom middleware, async error wrappers, and logging middleware.
 
-🔧 Features
-Custom error class (ExpressError)
+## 🔧 Features
+>Custom error class (ExpressError)
 
-Async error wrapper (wrapAsync)
+>Async error wrapper (wrapAsync)
 
-Layered error handling middleware
+>Layered error handling middleware
 
-Route-level middleware for logging requests
+>Route-level middleware for logging requests
 
-Fallback routes for unmatched paths
+>Fallback routes for unmatched paths
 
-📁 Project Structure
-pgsql
-Copy
-Edit
-ErrorHandlinMiddleware/
+## 📁 Project Structure
+
+```ErrorHandlinMiddleware/
 ├── index.js             # Main Express app with middleware and routes
 ├── wrapAsync.js         # Async error handling wrapper
 ├── ExpressError.js      # Custom error class
 └── README.md            # Project documentation
-🚀 Getting Started
-1. Clone the repository
-bash
-Copy
-Edit
-git clone https://github.com/your-username/ErrorHandlinMiddleware.git
-cd ErrorHandlinMiddleware
-2. Install dependencies
-bash
-Copy
-Edit
-npm install express
-3. Run the server
-bash
-Copy
-Edit
-node index.js
-Server will start on http://localhost:4000
+```
+## 🚀 Getting Started
+> - cd ErrorHandlinMiddleware
 
-🧪 Usage
-Root Route /
+1. Install dependencies
+
+> - npm install
+
+2. Run the server
+>- npm start
+
+>Server will start on http://localhost:4000
+
+## 🧪 Usage
 This route intentionally throws an error due to an undefined variable:
+> Root Route /
 
-js
-Copy
-Edit
+
+
+```
 app.get('/', (req, res) => {
   avcd = abcde; // ReferenceError
 });
+```
+
+
+Logging Middleware
+Logs the original URL and HTTP method for each request:
+
 User Route /user/:id
 Uses middleware and an async wrapper to catch errors:
 
-js
-Copy
-Edit
+```
 app.get('/user/:id', logStuff, aysncWrap((req, res, next) => {
   abcd = abcdef; // ReferenceError
   res.send('User Info');
 }));
-Logging Middleware
-Logs the original URL and HTTP method for each request:
+```
 
-js
-Copy
-Edit
+
+```
 function logOriginalUrl(req, res, next) { ... }
 function logMethod(req, res, next) { ... }
-⚠️ Error Handling Middleware Flow
-First Middleware: Logs and forwards the error.
+```
 
-Second Middleware: Modifies error with a custom ExpressError.
+## ⚠️ Error Handling Middleware Flow
 
-Third Middleware: Logs the error message.
+>First Middleware: Logs and forwards the error.
 
-Fourth Middleware: Sends the error message as a response.
+>Second Middleware: Modifies error with a custom ExpressError.
 
-🧠 Custom Modules
+>Third Middleware: Logs the error message.
+
+>Fourth Middleware: Sends the error message as a response.
+
+## 🧠 Custom Modules
+
 wrapAsync.js
 Wraps async functions and forwards errors to next().
 
-js
-Copy
-Edit
+```
 function aysncWrap(fn){
   return function(req,res,next){
     fn(req,res,next).catch((err)=>{next(err)})
   }
 }
+```
+
 ExpressError.js
 Defines a custom error class with status and message.
 
-js
-Copy
-Edit
+```
 class ExpressError extends Error {
   constructor(status, msg) {
     super();
@@ -102,7 +98,9 @@ class ExpressError extends Error {
     this.message = msg;
   }
 }
-📌 Notes
+```
+
+## 📌 Notes
 Always define error-handling middleware after all routes.
 
 Middleware chaining allows modular and layered error inspection.
