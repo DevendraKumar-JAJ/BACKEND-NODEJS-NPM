@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      body {
+        padding: 1%;
+        background-color: #509290;
+        width: 100%;
+        #btns{
+          display: flex;
+          justify-content: space-between;
+          form{
+        button{
+          padding: 3px 5px;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          border-radius: 5px;
+          font-size: 16px;
+          font-weight: 700;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+      }
+        }
+      }
+      h1 {
+        text-align: center;
+        font-size: 22px;
+        margin: 1%;
+        margin-left: 0;
+        color: azure;
+        border-bottom: 1px solid black;
+        border-top: none;
+        
+      }
+      
+      div {
+        /* width: 98%; */
+        display: inline-block;
+        padding: 3px 3px; 
+        border: 1px solid azure;
+        background-color: rgb(114, 160, 160);
+        border-radius: 5px;
+        margin: 1%;
+        margin-left: 0;
+
+        h2 {
+          font-size: 16px;
+          font-weight: 700;
+          padding: 3px 5px;
+          padding-right: 0;
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid;
+          
+          span{
+          font-size: 9px;
+          border-radius: 0 5px 0 0;
+          padding-bottom: 10px;
+          color: azure;
+          padding: 5px;
+          i{
+            cursor: pointer;
+          }
+        }
+        }
+
+        p {
+          font-size: 15px;
+          background-color: rgb(209, 206, 206);
+          margin-left: 20px;
+          padding: 5px 15px;
+          border-radius: 5px;
+          border-bottom: 1px solid azure;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          i{
+            font-size: 8px;
+            cursor: pointer;
+            margin-left: 15px;
+          }
+          
+        }
+        h6 {
+          text-align: right;
+          font-size: 8px;
+          padding: 2px 3px;
+          display: flex;
+          align-items: center;justify-content: space-between;
+          font-weight: 700;
+          span {
+            margin-right: 10px;
+            font-size: 10px;
+            
+          }
+        }
+
+        input{
+          outline: none;
+          width: 50%;
+        }
+      }
+    </style>
+    <title>All Chats</title>
+  </head>
+  <body>
+    <h1>All Chats</h1>
+    <div id="btns">
+      <form action="/chats/new" method="get">
+        <button type="submit">New chat</button>
+      </form>
+    </div>
+    <% chats.forEach(chat => { %>
+    <div>
+      <h2>
+        <i class="italic"> <%= chat.from %> </i> 
+        <span> <i id="<%= chat._id %>" class="fa-solid fa-trash"></i></span>
+      </h2>
+      <p><%= chat.msg %> <i id="<%= chat._id %>"  class="fa-solid fa-pen "></i></p>
+      <h6>
+        <span> </i> <%= chat.to %> </i></span> <%= chat.created_at.toLocaleTimeString() %>
+      </h6>
+    </div>
+    <br />
+    <% }); %>
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+    <script>
+      $('.fa-pen').click((data)=>{
+        var chatId=data.target.id;
+        console.log(data.target.id)
+        $.ajax({
+          type:"GET",
+          url:'/chats/'+chatId+'/edit',
+          success:(data)=>{
+            console.log('Success')
+            $('body').html(data)
+          },
+          error:()=>{
+            console.log('Error')
+          }
+        })
+      })
+      $('.fa-trash').click((data)=>{
+        var chatId=data.target.id;
+        console.log(data.target.id)
+        $.ajax({
+          type:"DELETE",
+          url:'/chats/'+chatId+'/delete',
+          success:(data)=>{
+            console.log('Success')
+            $('body').html(data)
+          },
+          error:()=>{
+            console.log('Error')
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
